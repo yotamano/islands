@@ -23,6 +23,11 @@
             
 			import * as THREE from 'https://cdn.skypack.dev/three';
 
+			import { OrbitControls } from 'https://cdn.skypack.dev/three-orbit-controls';
+			import { PCDLoader } from '../islands/jsm/loaders/PCDLoader.js';
+            import { MapControls } from '../islands/jsm/controls/OrbitControls.js';
+            import { GUI } from '../islands/jsm/libs/lil-gui.module.min.js';
+
 			let camera, controls, scene, renderer, mouse;
             
             let raycaster, intersects;
