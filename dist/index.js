@@ -94,7 +94,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
                 const modelGroup = new THREE.Group();
 				const loader = new PCDLoader();
                 
-                    loader.load( '/models/8.pcd', function ( points3 ) {
+                    loader.load( './models/8.pcd', function ( points3 ) {
                     points3.material.vertexColors = THREE.NoColors;
 					points3.material.size = pointSize;
 //                	points.geometry.rotateX( Math.PI );
@@ -106,7 +106,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
 				} );
                 
                 
-				loader.load( '/models/6.pcd', function ( points ) {
+				loader.load( './models/6.pcd', function ( points ) {
                     points.material.vertexColors = THREE.NoColors;
                     points.position.set(0, 1, 0);
                     points.material.size = pointSize;
@@ -119,7 +119,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
 					render();
 
 				} );
-                    loader.load( '/models/7.pcd', function ( plant ) {
+                    loader.load( './models/7.pcd', function ( plant ) {
                     plant.material.vertexColors = THREE.NoColors;
                     plant.material.size = pointSize;
                     const modelGroup = new THREE.Group();
@@ -131,7 +131,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
 				} );
           
                 
-                    loader.load( '/models/9.pcd', function ( truck ) {
+                    loader.load( './models/9.pcd', function ( truck ) {
                     truck.material.vertexColors = THREE.NoColors;
 					truck.material.size = pointSize;
 //                	points.geometry.rotateX( Math.PI );
