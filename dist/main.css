@@ -1,0 +1,160 @@
+@font-face {
+  font-family: Editor;
+  src: url(EditorSans-Light.otf);
+}
+
+@font-face {
+  font-family: Narkissim;
+  src: url(Narkissim-Regular.otf);
+}
+
+body {
+	margin: 0;
+	background-color: #000;
+	color: #fff;
+	font-family: Narkissim;
+	font-size: 30px;
+	line-height: 35px;
+	overscroll-behavior: none;
+    overflow: hidden;
+}
+
+#startButton {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    width: 10%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    color:#ff582b;
+    font-size: 25px;
+    font-family: Narkissim;
+}
+
+a {
+	color: #ff582b;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+button {
+	cursor: pointer;
+	text-transform: uppercase;
+}
+
+
+#position-area{
+    background: url(position.svg) no-repeat;
+    background-size: 100%;
+    border:none;
+    width: 250px;
+    height:106px;
+    
+        
+}
+
+input {
+    position: relative;
+    top:32px;
+    left: -37px;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    font-family: Narkissim;
+    font-size: 25px;
+  color: white;
+    padding: 10px;
+    padding-right: 5px;
+    margin: 2px;
+    text-align: center;
+    border: none;
+/*    border: 1px dashed #fff ;*/
+}
+
+input:focus {
+/*  border: 1px solid #ff582b;*/
+    color: #ff582b;
+    
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+#info {
+	position: absolute;
+	bottom: 0px;
+    right: 0;
+	padding: 20px;
+	box-sizing: border-box;
+	text-align: center;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+/*	pointer-events: none;*/
+	z-index: 2; /* TODO Solve this in HTML */
+}
+
+/*
+a, button, input, select {
+	pointer-events: auto;
+}
+*/
+
+
+
+
+
+#data{
+    position: absolute;
+	top: 0;
+    left: 0;
+    font-size: 15px;
+    padding: 40px;
+    user-select: none;
+}
+
+#menu{
+    z-index: 10;
+    position: absolute;
+    width:280px;
+     top:0;
+    right:0;
+    height: 100%;
+/*    background-color: black;*/
+    border: none;
+/*    border-left: #fff 1px dashed*/
+
+}
+
+.icon {
+    padding:20px;
+
+    position: relative;
+     width:50%;
+    filter: brightness(100);
+     display: block;
+     margin-left: auto;
+}
+
+.icon:hover {
+   filter: none;
+
+}
+
+#icons-container{
+position: relative;
+top:30%;
+right: 20%;
+border: no-border
+
+
+}
