@@ -6,10 +6,10 @@ document.getElementsByTagName('head')[0].appendChild(script);
 
 
 //			import { OrbitControls } from '/jsm/controls/OrbitControls.js';
-			import { PCDLoader } from '/jsm/loaders/PCDLoader.js';
+			import { PCDLoader } from './jsm/loaders/PCDLoader.js';
 //            import { MapControls } from '/jsm/controls/OrbitControls.js';
-            import { TWEEN } from '/js/tween.module.min.js';
-            import { PositionalAudioHelper } from '/jsm/PositionalAudioHelper.js';
+            import { TWEEN } from './js/tween.module.min.js';
+            import { PositionalAudioHelper } from './jsm/PositionalAudioHelper.js';
 
 			let camera, controls, scene, renderer, mouse;
             
