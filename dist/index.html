@@ -6,6 +6,8 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<link type="text/css" rel="stylesheet" href="main.css">
 	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!--        <script src="js/jquery.drum.min.js"></script>-->
+        <script src="js/drum2.js"></script>
         <script src="https://threejs.org/build/three.js"></script>
         <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
 <!--        <script src="https://threejs.org/examples/jsm/loaders/PCDLoader.js"></script>-->
@@ -32,26 +34,41 @@
     	<body>
         <button id="startButton">התחל</button>
         <div id="container">
+        <h1>עבר האגרון הצפוני</h1>
         <div id="panel"></div>
+            <div class="dashed"></div>
+            
+        <div id="icons-container">
+        <div class="icon" data-X="11" data-Y="2" data-Z="5" ><img src="icons/01.png"/><a>עבר האגרון הצפוני</a></div>
+        <div class="icon" data-X="11" data-Y="0" data-Z="30"><img src="icons/02.png"/><a>מגרש החניה</a></div>
+        <div class="icon" data-X="36" data-Y="3" data-Z="14"><img src="icons/03.png"/><a>משאית הזבל</a></div>
+            </div>
+            
         <div id="menu">
-            <div id="icons-container"><img class="icon" src="icons/01.png"/><img class="icon" src="icons/02.png"/><img class="icon" src="icons/03.png"/></div>
+  
             
             
             		<div id="info">
             
             
-            <div id="p1"></div>
-            <br>
-            <div id="position-area">       
-             <input class="inputs" id="numbX" placeholder="00" maxlength="2">
+            
+           
+            <div id="position-area"> 
+                <div class="drum" id="drum-x"></div>
+                <div class="drum" id="drum-z" style="left: 95px;"></div>
+                <div class="drum" id="drum-y" style="left: 185px;"></div>
+<!--             <input class="inputs" id="numbX" placeholder="00" maxlength="2">-->
+<!--
             <input class="inputs" id="numbZ" placeholder="00" maxlength="2">
             <input class="inputs" id="numbY" placeholder="00" maxlength="2" style="left: -8px;"></br>
+-->
 			</div>  
+           
 			
                     
-
                 
 		</div>
+            <div id="p1">בחורשה היו קברים מוסלמים עתיקים ובינהם היו ערמות של ספסלי רחוב</div>
             
             </div>
             
@@ -61,6 +78,11 @@
     </div>
     
     <script>
+        
+         
+
+        
+       
 
 $(".inputs").keyup(function () {
     if (this.value.length == this.maxLength) {

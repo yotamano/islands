@@ -5,8 +5,27 @@
 
 @font-face {
   font-family: Narkissim;
-  src: url(Narkissim-Regular.otf);
+  src: url(Narkisim-Regular.otf);
+font-weight: 100;
 }
+
+@font-face {
+  font-family: Narkissim;
+  src: url(Narkisim-Medium.otf);
+font-weight: 200;
+}
+@font-face {
+  font-family: Narkissim;
+  src: url(Narkisim-DemiBold.otf);
+font-weight: 300;
+}
+
+@font-face {
+  font-family: Narkissim;
+  src: url(Narkisim-Bold.otf);
+font-weight: 400;
+}
+
 
 body {
 	margin: 0;
@@ -34,6 +53,17 @@ body {
     font-size: 25px;
     font-family: Narkissim;
 }
+
+h1{
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 40px;
+    font-weight: 400;
+    color: #ff582b;
+}
+
+
 
 a {
 	color: #ff582b;
@@ -68,6 +98,7 @@ input {
     height: 30px;
     background: transparent;
     font-family: Narkissim;
+    font-weight: 100;
     font-size: 25px;
   color: white;
     padding: 10px;
@@ -90,7 +121,7 @@ textarea:focus, input:focus{
 
 #info {
 	position: absolute;
-	bottom: 0px;
+	bottom: 100px;
     right: 0;
 	padding: 20px;
 	box-sizing: border-box;
@@ -135,26 +166,106 @@ a, button, input, select {
 
 }
 
+#p1{
+    position: absolute;
+    bottom: 0;
+    height: 80px;
+    font-size: 20px;
+    font-weight: 200;
+    text-align: right;
+    line-height: 24px;
+    padding: 10px;
+    
+}
+
+.dashed{
+        position: absolute;
+    bottom: 100px;
+    width: 100%;
+    border-top: 2px dashed #bbb;
+}
+
 .icon {
     padding:20px;
-
+    width: 100px;
+    height: 30px;
     position: relative;
-     width:50%;
     filter: brightness(100);
-     display: block;
+     display: inline-block;
      margin-left: auto;
+    text-align: center;
+}
+
+.icon img{
+   width:80px; 
+    position: absolute;
+    top:0;
+    left:35%;
+   
+}
+
+.icon a{
+    padding-top: 10px;
+    font-size: 12px;
+    position: absolute;
+    bottom: 0;
+    line-height: 15px;
+    left: 40%;
 }
 
 .icon:hover {
    filter: none;
+    cursor: pointer;
 
+}
+
+.icon a:hover{
+    text-decoration: none;
 }
 
 #icons-container{
-position: relative;
-top:30%;
-right: 20%;
-border: no-border
+width: 800px;
+position: absolute;
+bottom:0;
+left: 0;
+border: none;
 
 
 }
+
+
+.drum{
+    position: absolute;
+    bottom: 40px;
+    left:40px;
+    font-size: 30px;
+    font-family: Narkissim;
+    font-weight: 300;
+    -webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	-o-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+
+.drum-item-current{
+    color: #ff582b;
+}
+.drum-item {
+    line-height: 1;
+}
+
+.drum-viewport {
+  margin: 0;
+  padding: 0 ;
+  height: 50px;
+ 
+  cursor: pointer;
+}
+
+.drum-viewport {
+/*  top: 0;*/
+  background: linear-gradient(to bottom,
+    rgba(0,0,0,1),
+    rgba(0,0,0,0);
+}
+

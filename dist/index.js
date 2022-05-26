@@ -11,6 +11,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
             import { TWEEN } from './js/tween.module.min.js';
             import { PositionalAudioHelper } from './jsm/PositionalAudioHelper.js';
 
+
 			let camera, controls, scene, renderer, mouse;
             
             let raycaster, intersects;
@@ -55,8 +56,8 @@ document.getElementsByTagName('head')[0].appendChild(script);
 				scene = new THREE.Scene();
 
 				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 40 );
-                camera.lookAt( new THREE.Vector3(1,0,2));
-                camera.position.set( 0, 0, 0 );
+                camera.lookAt( new THREE.Vector3(10,2,4));
+                camera.position.set( 12, 4, 5 );
                 
 				scene.add( camera );
                 
@@ -76,13 +77,13 @@ document.getElementsByTagName('head')[0].appendChild(script);
 				controls = new THREE.OrbitControls( camera, renderer.domElement );
                 
 				//controls.addEventListener( 'change', render ); // call this only in static scenes (i.e., if there is no animation loop)
-                controls.target = new THREE.Vector3(1,0,2);
+                controls.target = new THREE.Vector3(12,0,5);
 				controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
 				controls.dampingFactor = 0.08;
 
 				controls.screenSpacePanning = false;
 
-				controls.minDistance = 0.001;
+				controls.minDistance = 1;
 				controls.maxDistance = 10;
 //                controls.autoRotate = true;
                 
@@ -98,7 +99,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
                     points3.material.vertexColors = THREE.NoColors;
 					points3.material.size = pointSize;
 //                	points.geometry.rotateX( Math.PI );
-                    points3.position.set(10, -5, 30);
+                    points3.position.set(10, 0, 30);
 				    modelGroup.add( points3 );
                     scene.add( modelGroup );
                 	render();
@@ -108,7 +109,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
                 
 				loader.load( './models/6.pcd', function ( points ) {
                     points.material.vertexColors = THREE.NoColors;
-                    points.position.set(0, 1, 0);
+                    points.position.set(12, 2, 5);
                     points.material.size = pointSize;
 					points.geometry.center();
                     
@@ -126,6 +127,17 @@ document.getElementsByTagName('head')[0].appendChild(script);
                     plant.position.set(2, 0.5, 3);
                     plant.yo = 'אהלן';
                     scene.add( plant );
+					render(); 
+
+				} );
+                
+                    loader.load( './models/stairs.pcd', function ( stairs ) {
+                    stairs.material.vertexColors = THREE.NoColors;
+                    stairs.material.size = pointSize;
+                    const modelGroup = new THREE.Group();
+                    stairs.position.set(35, 12, 40);
+                    modelGroup.add( stairs );
+                    scene.add( modelGroup );
 					render(); 
 
 				} );
@@ -302,8 +314,8 @@ document.getElementsByTagName('head')[0].appendChild(script);
                 
                   
 //                    const oldTargetPosition = controls.target.clone();
-                    console.log(camera.position);
-//             controls.enabled = false;
+
+             controls.enabled = false;
                     var duration = 2500;
                     var position = new THREE.Vector3().copy(camera.position);
                     var lookAt = new THREE.Vector3().copy(controls.target);
@@ -314,14 +326,10 @@ document.getElementsByTagName('head')[0].appendChild(script);
                         .easing( TWEEN.Easing.Cubic.InOut )
                         .onUpdate(function () {
                             camera.position.copy(position);
-//                            controls.target = lookAt;
-//                            camera.lookAt( controls.target );
+
                         })
                         .onComplete(function () {
-
                             camera.position.copy( targetPosition );
-//                            controls.target = targetLookAt;
-//                            camera.lookAt( controls.target );
                             controls.enabled = true;
                         })
                     .start();
@@ -353,30 +361,29 @@ document.getElementsByTagName('head')[0].appendChild(script);
 //                    const oldTargetPosition = controls.target.clone();
                     console.log(camera.position);
 //             controls.enabled = false;
-                    var duration = 2500;
+                    var duration = 3500;
                     var position = new THREE.Vector3().copy(camera.position);
                     var lookAt = new THREE.Vector3().copy(controls.target);
-                    var targetPosition = new THREE.Vector3(x, y+10, z);
+                    var targetPosition = new THREE.Vector3(x+0.1, y+15, z+0.1);
+                    var finalPosition = new THREE.Vector3(x+1, y+3, z+1);
                     var targetLookAt = new THREE.Vector3(x, y, z);
                     var tween = new TWEEN.Tween(position)
                         .to(targetPosition, duration)
                         .easing( TWEEN.Easing.Cubic.InOut )
                         .onUpdate(function () {
                             camera.position.copy(position);
-//                            controls.target = lookAt;
-//                            camera.lookAt( controls.target );
+
                         })
                         .onComplete(function () {
 
                             camera.position.copy( targetPosition );
-//                            controls.target = targetLookAt;
-//                            camera.lookAt( controls.target );
-                            controls.enabled = true;
+
+//                            controls.enabled = true;
                         })
-                    .start();
-   
-                
-                    var tween = new TWEEN.Tween(lookAt)
+                    
+//                    .start();
+               
+                    var tweenA = new TWEEN.Tween(lookAt)
                         .to(targetLookAt, duration)
                         .easing( TWEEN.Easing.Cubic.InOut )
                         .onUpdate(function () {
@@ -390,9 +397,34 @@ document.getElementsByTagName('head')[0].appendChild(script);
                             camera.lookAt( controls.target );
                             
                         })
-                    .start();
+//                    .start();
    
-                }
+              
+               
+              
+               
+                    var tweenB = new TWEEN.Tween(position)
+                        .to(finalPosition, 5000)
+                        .easing( TWEEN.Easing.Cubic.InOut )
+                        .onUpdate(function () {
+                            camera.position.copy(position);
+
+                        })
+                        .onComplete(function () {
+
+                            camera.position.copy( finalPosition );
+
+                            controls.enabled = true;
+                        })
+                 
+                     tween.chain(tweenB);
+                    tween.start();
+                    tweenA.start();
+   
+                  }
+         
+
+           
 
                 function cameraStae(){
                     let posX = camera.position.x.toFixed(1);
@@ -403,15 +435,37 @@ document.getElementsByTagName('head')[0].appendChild(script);
                     let rotY = camera.rotation.y.toFixed(1);
                     let rotZ = camera.rotation.z.toFixed(1);
 
-                    let tarX = controls.target.x.toFixed(1);
+                    var tarX = controls.target.x.toFixed(1);
                     let tarY = controls.target.y.toFixed(1);
-                    let tarZ = controls.target.z.toFixed(1);
+                    var tarZ = controls.target.z.toFixed(1);
                     
                      document.getElementById("data").innerHTML = 'Position:   '+posX+' , '+posY+' , '+posZ+'<br>'+'Target:   '+ tarX+' , '+tarY+' , '+tarZ;
+                    
+                        if ( tarX >= 4 &&  tarX <= 22 && tarZ >= -1 &&  tarZ <= 11 ){
+                             $('h1').fadeIn('slow');
+                             $('h1').text('עבר האגרון הצפוני');
+                            
+                        }else if ( tarX >= 30 &&  tarX <= 45 && tarZ >= 12 &&  tarZ <= 20 ){
+                            $('h1').fadeIn('slow');
+                             $('h1').text('משאית הזבל');
+                            
+                        }else{
+                            $('h1').fadeOut('slow');
+                        }
+                
                 }
+                
+
+
+          
+        
 
             function cameraMove(){
                  cameraStae();
+               
+                            
+               
+            
             }
 
             
@@ -422,8 +476,8 @@ document.getElementsByTagName('head')[0].appendChild(script);
             	function animate() {
 				
 				 // only required if controls.enableDamping = true, or if controls.autoRotate = true
-                resetObject();
-                hoverObject();
+//                resetObject();
+//                hoverObject();
 				camera.updateProjectionMatrix();
                 requestAnimationFrame(animate);
                 TWEEN.update();
@@ -447,10 +501,43 @@ document.getElementsByTagName('head')[0].appendChild(script);
                 const islandPositions = []
 
                 $( ".icon" ).click(function() {
-              lookAtPoint(1,5,3);
+                var X= parseInt($(this).attr("data-X"));
+                var Y= parseInt($(this).attr("data-Y"));
+                var Z= parseInt($(this).attr("data-Z"));
+                console.log(X,Y,Z);
+              goToIsland(X,Y,Z);
             });
 
 
+
+    let x;
+    let y = 1;
+    let z = 5;
+    
+$(".drum").drum({
+	max: 35,
+	value: 5,
+    acceleration: 500,
+     watchOutside:true,
+	change: function(event, data) {
+        if ($(this).attr("id") === "drum-x") {
+		console.log('X: '+ data.value);
+         x = data.value;
+            
+        }
+        else if($(this).attr("id") == "drum-z"){
+         console.log('Z: '+ data.value);
+         z = data.value;  
+            
+        } else if($(this).attr("id") == "drum-y"){
+         console.log('Y: '+ data.value);
+         y = data.value;   
+        };
+      
+        lookAtPoint(x,y,z);
+	
+    }
+});
 
 
 
