@@ -22,8 +22,9 @@ document.getElementsByTagName('head')[0].appendChild(script);
             const pointer = new THREE.Vector2();
             const threshold = 0.1;
             const length = 160;
-            const pointSize = 0.000000000001;
+            const pointSize = 1/5000;
 			
+
 
 
 
@@ -33,17 +34,40 @@ document.getElementsByTagName('head')[0].appendChild(script);
             $('#startButton').click(function() {;
                letsGo();
                console.log('wow');
-              $('#startButton').hide();
+              $('#splash').hide();
               $('#container').show();
                                                     
                                             
                      });
+
+             //dictionary
+                
+                let islands = {
+                    "tombs": [12, 2, 5],
+                    "parking": [3, 0, 40],
+                    "plant": [2, 0.5, 3],
+                    "stairs": [25, 20, 20],
+                    "truck":[45, 3, 25],
+                    "yotam": [0,5,20],
+                    "yuval": [35,8,0],
+                    "ben": [45,6,50]
+                    
+                };
+
+                ///
             
-            function letsGo(){
+
+            
             init();
+
+
+            function letsGo(){
+            initSound();
 			render();
             animate();
             };
+
+            var tombsGeomety;
 
 			function init() {
 
@@ -56,6 +80,8 @@ document.getElementsByTagName('head')[0].appendChild(script);
 				scene = new THREE.Scene();
 
 				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 40 );
+                camera.maxPolarAngle = 0;
+                camera.panSpeed = 0.1;
                 camera.lookAt( new THREE.Vector3(10,2,4));
                 camera.position.set( 12, 4, 5 );
                 
@@ -84,38 +110,45 @@ document.getElementsByTagName('head')[0].appendChild(script);
 				controls.screenSpacePanning = false;
 
 				controls.minDistance = 1;
-				controls.maxDistance = 10;
-//                controls.autoRotate = true;
+				controls.maxDistance = 8;
+                controls.autoRotate = false;
                 
        
 //				controls.maxPolarAngle = Math.PI*2 ;
 
 //				scene.add( new THREE.AxesHelper( 1 ) );
                 
-                const modelGroup = new THREE.Group();
-				const loader = new PCDLoader();
                 
-                    loader.load( './models/8.pcd', function ( points3 ) {
-                    points3.material.vertexColors = THREE.NoColors;
-					points3.material.size = pointSize;
-//                	points.geometry.rotateX( Math.PI );
-                    points3.position.set(10, 0, 30);
-				    modelGroup.add( points3 );
+                
+
+                
+                const modelGroup = new THREE.Group();
+                const loader = new PCDLoader();
+                
+                let truck, plant, points;
+                
+                    loader.load( './models/8.pcd', function ( parking ) {
+                    parking.material.vertexColors = THREE.NoColors;
+					parking.material.size = pointSize;
+                    const pos = islands['parking'];
+                    parking.position.set(pos[0],pos[1],pos[2]);
+				    modelGroup.add( parking );
                     scene.add( modelGroup );
                 	render();
 
 				} );
                 
                 
-				loader.load( './models/6.pcd', function ( points ) {
-                    points.material.vertexColors = THREE.NoColors;
-                    points.position.set(12, 2, 5);
-                    points.material.size = pointSize;
-					points.geometry.center();
-                    
-					//points.geometry.rotateX( Math.PI );
-                    
-					modelGroup.add( points );
+				loader.load( './models/6.pcd', function ( tombs ) {
+                    tombs.material.vertexColors = THREE.NoColors;
+                    const pos = islands['tombs'];
+                    tombs.position.set(pos[0],pos[1],pos[2]);
+                    tombs.material.size = pointSize;
+                    tombs.material = m;
+					tombs.geometry.center();
+                    tombs.name = 'tombs';
+                    console.log(tombs);
+					modelGroup.add( tombs );
                     scene.add( modelGroup );
 					render();
 
@@ -124,7 +157,9 @@ document.getElementsByTagName('head')[0].appendChild(script);
                     plant.material.vertexColors = THREE.NoColors;
                     plant.material.size = pointSize;
                     const modelGroup = new THREE.Group();
-                    plant.position.set(2, 0.5, 3);
+                    const pos = islands['plant'];
+                    plant.position.set(pos[0],pos[1],pos[2]);
+                    plant.name = 'plant';
                     plant.yo = 'אהלן';
                     scene.add( plant );
 					render(); 
@@ -135,7 +170,9 @@ document.getElementsByTagName('head')[0].appendChild(script);
                     stairs.material.vertexColors = THREE.NoColors;
                     stairs.material.size = pointSize;
                     const modelGroup = new THREE.Group();
-                    stairs.position.set(35, 12, 40);
+                    const pos = islands['stairs'];
+                    stairs.position.set(pos[0],pos[1],pos[2]);
+                    stairs.name = 'stairs';
                     modelGroup.add( stairs );
                     scene.add( modelGroup );
 					render(); 
@@ -147,8 +184,43 @@ document.getElementsByTagName('head')[0].appendChild(script);
                     truck.material.vertexColors = THREE.NoColors;
 					truck.material.size = pointSize;
 //                	points.geometry.rotateX( Math.PI );
-                    truck.position.set(35, 3, 15);
+                    const pos = islands['truck'];
+                    truck.position.set(pos[0],pos[1],pos[2]);
 				    modelGroup.add( truck );
+                    scene.add( modelGroup );
+                	render();
+
+				} );
+                
+                    loader.load( './models/yotam.pcd', function ( yotam ) {
+                    yotam.material.vertexColors = THREE.NoColors;
+					yotam.material.size = pointSize;
+                    const pos = islands['yotam'];
+                    yotam.position.set(pos[0],pos[1],pos[2]);
+				    modelGroup.add( yotam );
+                    yotam.rotation.y = 180;
+                    scene.add( modelGroup );
+                	render();
+
+				} );
+                
+                    loader.load( './models/yuval.pcd', function ( yuval ) {
+                    yuval.material.vertexColors = THREE.NoColors;
+					yuval.material.size = pointSize;
+                    const pos = islands['yuval'];
+                    yuval.position.set(pos[0],pos[1],pos[2]);
+				    modelGroup.add( yuval );
+                    scene.add( modelGroup );
+                	render();
+
+				} );
+                    loader.load( './models/ben.pcd', function ( ben ) {
+                    ben.material.vertexColors = THREE.NoColors;
+					ben.material.size = pointSize;
+                    const pos = islands['ben'];
+                    ben.position.set(pos[0],pos[1]-4,pos[2]);
+                    ben.rotation.y = 270;
+				    modelGroup.add( ben );
                     scene.add( modelGroup );
                 	render();
 
@@ -162,65 +234,46 @@ document.getElementsByTagName('head')[0].appendChild(script);
                 
                 //
               
-                const audioLoader = new THREE.AudioLoader();
-		      const listener = new THREE.AudioListener();
-		      camera.add( listener );
+
+                    
+     
+
+                }  
+                    
+                    
+                    
+                    
+
+
+
+                function initSound(){
+                                  const audioLoader = new THREE.AudioLoader();
+                const listener = new THREE.AudioListener();
+		        camera.add( listener );
                
                 
-                const soundList = ['mp3/story.mp3','mp3/truck.mp3'];
+                const soundList = ['mp3/story.mp3','mp3/truck.mp3'];         
+                const positionList = [35,3,15,
+                                      10,12,1];
+                
+                
+                for (let i = 0; i < soundList.length; i++) {
                 const positionalAudio = new THREE.PositionalAudio( listener );
-			    audioLoader.load( soundList[0], function ( buffer ) {
-
-				positionalAudio.setBuffer( buffer );
-				positionalAudio.setRefDistance( 1 );
-				positionalAudio.loop = true;
-				positionalAudio.play();
-                positionalAudio.setDistanceModel = 'inverse';
-                positionalAudio.setMaxDistance = 0.01;
-				positionalAudio.setDirectionalCone( 180, 230, 0.1 );
-                positionalAudio.position.x = 35;
-				positionalAudio.position.y = 3;
-				positionalAudio.position.z = 15;
-
-				const helper = new PositionalAudioHelper( positionalAudio, 1 );
-                helper.scale.set( 1, 1, 1 );
-			     positionalAudio.add( helper );
-
-				
-			} );
-                const positionalAudio2 = new THREE.PositionalAudio( listener );
-                audioLoader.load( soundList[1], function ( buffer ) {
-
-				positionalAudio2.setBuffer( buffer );
-				positionalAudio2.setRefDistance( 1 );
-				positionalAudio2.loop = true;
-				positionalAudio2.play();
-                positionalAudio2.setDistanceModel = 'inverse';
-                positionalAudio2.setMaxDistance = 0.01;
-				positionalAudio2.setDirectionalCone( 180, 230, 0.1 );
-                positionalAudio2.position.x = 34;
-				positionalAudio2.position.y = 3;
-				positionalAudio2.position.z = 16;
-
-				const helper = new PositionalAudioHelper( positionalAudio, 1 );
-                helper.scale.set( 1, 1, 1 );
-			     positionalAudio2.add( helper );
-
-				
-			} );
+                audioLoader.load( soundList[i], function ( buffer ) {
+                positionalAudio.setBuffer( buffer );
+                positionalAudio.setRefDistance( 1 );
+                positionalAudio.loop = true;
+                positionalAudio.setRolloffFactor(8);
+                positionalAudio.play();
+                });
+                const audioObject = new THREE.Object3D;
+                audioObject.position.set(positionList[i*3], positionList[i*3+1],positionList[i*3+2]);
+                console.log(positionList[i*3], positionList[i*3+1],positionList[i*3+2])
+                audioObject.add(positionalAudio);
+                scene.add(audioObject);
+                }
                 
-                   //
-                
-                
-                
-                /////minimap
-                
-               
-                
-                
-                
-                
-                /////
+    
 
 				window.addEventListener( 'resize', onWindowResize );
 
@@ -231,7 +284,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
 
 			}
 
-
+        
           
 			function onWindowResize() {
 
@@ -319,7 +372,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
                     var duration = 2500;
                     var position = new THREE.Vector3().copy(camera.position);
                     var lookAt = new THREE.Vector3().copy(controls.target);
-                    var targetPosition = new THREE.Vector3(x-1, y+1, z-2);
+                    var targetPosition = new THREE.Vector3(x+1, (y+0.5)*1.2, z+1);
                     var targetLookAt = new THREE.Vector3(x, y, z);
                     var tween = new TWEEN.Tween(position)
                         .to(targetPosition, duration)
@@ -361,11 +414,11 @@ document.getElementsByTagName('head')[0].appendChild(script);
 //                    const oldTargetPosition = controls.target.clone();
                     console.log(camera.position);
 //             controls.enabled = false;
-                    var duration = 3500;
+                    var duration = 4000;
                     var position = new THREE.Vector3().copy(camera.position);
                     var lookAt = new THREE.Vector3().copy(controls.target);
-                    var targetPosition = new THREE.Vector3(x+0.1, y+15, z+0.1);
-                    var finalPosition = new THREE.Vector3(x+1, y+3, z+1);
+                    var targetPosition = new THREE.Vector3(x+0.5, y+35, z+0.2);
+                    var finalPosition = new THREE.Vector3(x+1, y+1, z+1);
                     var targetLookAt = new THREE.Vector3(x, y, z);
                     var tween = new TWEEN.Tween(position)
                         .to(targetPosition, duration)
@@ -462,19 +515,41 @@ document.getElementsByTagName('head')[0].appendChild(script);
 
             function cameraMove(){
                  cameraStae();
-               
+                controls.autoRotate = false;
+             
                             
                
             
             }
 
-            
+         
 
-
-
+                    var clock2 = new THREE.Clock();
+                    var t = 0;
+                    var delta = 0;
 //
             	function animate() {
+              
+                     delta = clock2.getDelta();
+                    t += delta;
+                    
+//                   m.shader.vertexShader + t
+//                const geometry = scene.getObjectByName( 'tombs' ).geometry;
+//                        const count = geometry.attributes.position.count;
+//                        
+//                        const now = Date.now() / 5000;
+//                        for (let i = 0; i< count; i++) {
+//                            const x = geometry.attributes.position.getX(i);
+//                            const xsin = Math.sin(x+now);
+//                            geometry.attributes.position.getZ(i, xsin);
+//                        }
+//                        geometry.attributes.position.needsUpdate = true
+//                        console.log(count);
+                    
+
+
 				
+                    
 				 // only required if controls.enableDamping = true, or if controls.autoRotate = true
 //                resetObject();
 //                hoverObject();
@@ -498,14 +573,16 @@ document.getElementsByTagName('head')[0].appendChild(script);
 
 ////// Navigation script 
 
-                const islandPositions = []
+              
 
                 $( ".icon" ).click(function() {
                 var X= parseInt($(this).attr("data-X"));
                 var Y= parseInt($(this).attr("data-Y"));
                 var Z= parseInt($(this).attr("data-Z"));
+                const island= $(this).attr("island");
+                const pos = islands[island];
                 console.log(X,Y,Z);
-              goToIsland(X,Y,Z);
+              goToIsland(pos[0],pos[1],pos[2]);
             });
 
 
@@ -515,10 +592,12 @@ document.getElementsByTagName('head')[0].appendChild(script);
     let z = 5;
     
 $(".drum").drum({
-	max: 35,
+	max: 85,
 	value: 5,
-    acceleration: 500,
+    step:1,
+    acceleration: 400,
      watchOutside:true,
+    orderAsc:true,
 	change: function(event, data) {
         if ($(this).attr("id") === "drum-x") {
 		console.log('X: '+ data.value);
@@ -539,6 +618,187 @@ $(".drum").drum({
     }
 });
 
+
+
+
+
+
+
+var simplexNoise = `
+        //	Simplex 3D Noise 
+        //	by Ian McEwan, Ashima Arts
+        //
+        vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}
+        vec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314 * r;}
+
+        float snoise(vec3 v){ 
+          const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;
+          const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);
+
+        // First corner
+          vec3 i  = floor(v + dot(v, C.yyy) );
+          vec3 x0 =   v - i + dot(i, C.xxx) ;
+
+        // Other corners
+          vec3 g = step(x0.yzx, x0.xyz);
+          vec3 l = 1.0 - g;
+          vec3 i1 = min( g.xyz, l.zxy );
+          vec3 i2 = max( g.xyz, l.zxy );
+
+          //  x0 = x0 - 0. + 0.0 * C 
+          vec3 x1 = x0 - i1 + 1.0 * C.xxx;
+          vec3 x2 = x0 - i2 + 2.0 * C.xxx;
+          vec3 x3 = x0 - 1. + 3.0 * C.xxx;
+
+        // Permutations
+          i = mod(i, 289.0 ); 
+          vec4 p = permute( permute( permute( 
+                     i.z + vec4(0.0, i1.z, i2.z, 1.0 ))
+                   + i.y + vec4(0.0, i1.y, i2.y, 1.0 )) 
+                   + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));
+
+        // Gradients
+        // ( N*N points uniformly over a square, mapped onto an octahedron.)
+          float n_ = 1.0/7.0; // N=7
+          vec3  ns = n_ * D.wyz - D.xzx;
+
+          vec4 j = p - 49.0 * floor(p * ns.z *ns.z);  //  mod(p,N*N)
+
+          vec4 x_ = floor(j * ns.z);
+          vec4 y_ = floor(j - 7.0 * x_ );    // mod(j,N)
+
+          vec4 x = x_ *ns.x + ns.yyyy;
+          vec4 y = y_ *ns.x + ns.yyyy;
+          vec4 h = 1.0 - abs(x) - abs(y);
+
+          vec4 b0 = vec4( x.xy, y.xy );
+          vec4 b1 = vec4( x.zw, y.zw );
+
+          vec4 s0 = floor(b0)*2.0 + 1.0;
+          vec4 s1 = floor(b1)*2.0 + 1.0;
+          vec4 sh = -step(h, vec4(0.0));
+
+          vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;
+          vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;
+
+          vec3 p0 = vec3(a0.xy,h.x);
+          vec3 p1 = vec3(a0.zw,h.y);
+          vec3 p2 = vec3(a1.xy,h.z);
+          vec3 p3 = vec3(a1.zw,h.w);
+
+        //Normalise gradients
+          vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));
+          p0 *= norm.x;
+          p1 *= norm.y;
+          p2 *= norm.z;
+          p3 *= norm.w;
+
+        // Mix final noise value
+          vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
+          m = m * m;
+          return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1), 
+                                        dot(p2,x2), dot(p3,x3) ) );
+        }
+        `;
+
+let u = {
+  time: {value: 0},
+  lightPos: {value: new THREE.Vector3()}
+}
+
+let m = new THREE.PointsMaterial({
+  size: 1/5000, 
+  color: 0xffffff,
+  //map: new THREE.TextureLoader().load("https://threejs.org/examples/textures/sprites/circle.png"),
+  onBeforeCompile: shader => {
+    shader.uniforms.lightPos = u.lightPos;
+    shader.vertexShader = `
+      uniform float time;
+      uniform vec3 lightPos;
+      varying float vShade;
+      
+      ${simplexNoise}
+      
+      float turbulence( vec3 p ) {
+
+        float w = 100.0;
+        float t = -.1;
+
+        for (float f = 1.0 ; f <= 10.0 ; f++ ){
+          float power = pow( 10.0, f );
+          t += snoise( vec3( power * p ) )  / power ;
+        }
+
+        return t;
+
+      }
+      
+      vec3 setFromSphericalCoords( float radius, float phi, float theta ) {
+        float sinPhiRadius = sin( phi ) * radius;
+        vec3 v = vec3( sinPhiRadius * sin( theta ), cos( phi ) * radius, sinPhiRadius * cos( theta ) );
+        return v;
+      }
+      
+      vec2 setFromCartesianCoords( vec3 v ) {
+        float radius = sqrt( v.x * v.x + v.y * v.y + v.z * v.z );
+        float theta = 0.;
+        float phi = 0.;
+        if ( radius != 0. ) {
+          theta = atan( v.x, v.z );
+          phi = acos( clamp( v.y / radius, - 1., 1. ) );
+        }
+        return vec2(phi, theta);
+      }
+      
+      vec3 getPoint(vec3 p){
+        vec3 n = normalize(p);
+        float s = turbulence(n * 0.5);
+        return p + n * s;
+      }
+      
+      ${shader.vertexShader}
+    `.replace(
+      `#include <begin_vertex>`,
+      `#include <begin_vertex>
+        
+        vec3 p0 = getPoint(position);
+        vec2 spherical = setFromCartesianCoords(position);
+        vec2 s = vec2(0.01, 0.);
+        vec3 p1 = setFromSphericalCoords(length(position), spherical.x + s.x, spherical.y + s.y);
+        vec3 p2 = setFromSphericalCoords(length(position), spherical.x + s.y, spherical.y + s.x);
+        p1 = getPoint(p1);
+        p2 = getPoint(p2);
+        
+        vec3 nor = normalize(cross(p1 - p0, p2 - p0));
+        
+        transformed = p0;
+      `
+    ).replace(
+      `gl_PointSize = size;`,
+      `
+      vec3 lightDir = normalize(lightPos);
+      
+      float shade = clamp(dot(nor, lightDir), 0., 1.);
+      float mvShade = dot(normalize(normalMatrix * nor), -normalize(mvPosition.xyz));
+      //shade *= smoothstep(0., 0.125, mvShade);
+      vShade = shade;
+      
+      gl_PointSize = size + (shade * size);`
+    );
+//    console.log(shader.vertexShader);
+    shader.fragmentShader = `
+      varying float vShade;
+      ${shader.fragmentShader}
+    `.replace(
+//      `vec4 diffuseColor = vec4( diffuse, opacity );`,
+      `
+      if(length(gl_PointCoord - 0.5) > 0.5) discard; // make'em round
+      float shade = vShade * 0.5 + 0.5;
+//      vec4 diffuseColor = vec4( diffuse * shade, opacity );`
+    );
+//    console.log(shader.fragmentShader);
+  }
+});
 
 
 

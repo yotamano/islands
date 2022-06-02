@@ -37,13 +37,28 @@ body {
 	overscroll-behavior: none;
     overflow: hidden;
 }
+#splash{
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    position: absolute;
+    text-align: center;
+    padding: 10%;
+}
+
+p{
+    font-size: 25px;
+    font-family: editor;
+    width: 300px;
+}
 
 #startButton {
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     top: 50%;
     left: 50%;
-    width: 10%;
+    width: 100px;
     height: 10%;
     display: flex;
     align-items: center;
@@ -60,7 +75,11 @@ h1{
     top: 0;
     padding: 40px;
     font-weight: 400;
-    color: #ff582b;
+/*    color: #ff582b;*/
+    
+    width:300px;
+    text-align: right;
+    line-height: 50px;
 }
 
 
@@ -81,7 +100,7 @@ button {
 
 
 #position-area{
-    background: url(position.svg) no-repeat;
+    background: url(position2.svg) no-repeat;
     background-size: 100%;
     border:none;
     width: 250px;
@@ -121,7 +140,7 @@ textarea:focus, input:focus{
 
 #info {
 	position: absolute;
-	bottom: 100px;
+	bottom: 120px;
     right: 0;
 	padding: 20px;
 	box-sizing: border-box;
@@ -175,18 +194,20 @@ a, button, input, select {
     text-align: right;
     line-height: 24px;
     padding: 10px;
+    width: 290px;
+    right: 20px;
     
 }
 
 .dashed{
         position: absolute;
-    bottom: 100px;
+    bottom: 120px;
     width: 100%;
-    border-top: 2px dashed #bbb;
+    border-top: 1px dashed #fff;
 }
 
 .icon {
-    padding:20px;
+    padding:3px;
     width: 100px;
     height: 30px;
     position: relative;
@@ -197,20 +218,22 @@ a, button, input, select {
 }
 
 .icon img{
-   width:80px; 
+   width:70px; 
     position: absolute;
-    top:0;
-    left:35%;
+    bottom:20px;
+    left:50px;
    
 }
 
 .icon a{
-    padding-top: 10px;
+    padding-top: 8px;
     font-size: 12px;
     position: absolute;
     bottom: 0;
-    line-height: 15px;
-    left: 40%;
+    line-height: 12px;
+    left: 50px;
+    display: none;
+    
 }
 
 .icon:hover {
@@ -221,12 +244,13 @@ a, button, input, select {
 
 .icon a:hover{
     text-decoration: none;
+   
 }
 
 #icons-container{
-width: 800px;
+width: 850px;
 position: absolute;
-bottom:0;
+bottom:10px;
 left: 0;
 border: none;
 
@@ -236,7 +260,7 @@ border: none;
 
 .drum{
     position: absolute;
-    bottom: 40px;
+    bottom: 35px;
     left:40px;
     font-size: 30px;
     font-family: Narkissim;

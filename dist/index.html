@@ -32,16 +32,23 @@
         
         </head>
     	<body>
-        <button id="startButton">התחל</button>
+        <div id="splash">
+            <h2>כותרת כותרת</h2>
+            <p>טקסט טקסט טקסט טקסט טקסט טקסט טקסט טקסטטקסט טקסט טקסט טקסטטקסט טקסט טקסט טקסטטקסט טקסט טקסט טקסטטקסט טקסט טקסט טקסט</p>
+            <button id="startButton">התחל</button></div>
         <div id="container">
         <h1>עבר האגרון הצפוני</h1>
         <div id="panel"></div>
             <div class="dashed"></div>
             
         <div id="icons-container">
-        <div class="icon" data-X="11" data-Y="2" data-Z="5" ><img src="icons/01.png"/><a>עבר האגרון הצפוני</a></div>
-        <div class="icon" data-X="11" data-Y="0" data-Z="30"><img src="icons/02.png"/><a>מגרש החניה</a></div>
-        <div class="icon" data-X="36" data-Y="3" data-Z="14"><img src="icons/03.png"/><a>משאית הזבל</a></div>
+        <div class="icon" island="tombs"><img src="SVG/tombs.svg"/><a>עבר האגרון הצפוני</a></div>
+        <div class="icon" island="stairs"><img src="SVG/stairs.svg"/><a>מעלה ג׳ורג׳</a></div>
+        <div class="icon" island="parking"><img src="SVG/parking.svg"/><a>שפלת חניה</a></div>
+        <div class="icon" island="truck"><img src="SVG/truck.svg"/><a>עמק הסובלנות</a></div>
+        <div class="icon" island="yuval"><img src="SVG/yuval.svg"/><a>אוסישקין 42</a></div>
+         <div class="icon" island="yotam"><img src="SVG/yotam.svg"/><a>שמואל הנגיד 19</a></div>
+        <div class="icon" island="ben"><img src="SVG/ben.svg" style="width:150px; bottom:10px"/><a style="left: 100px; width: 50px">ערבת יהודה</a></div>
             </div>
             
         <div id="menu">
@@ -94,6 +101,14 @@ $(".inputs").keyup(function () {
            $('#container').hide();
 
         });
+        
+        
+        $('.icon').hover(function(){
+            $(this).children('a').css("display","block");
+        }, function() {
+            $(this).children('a').css("display","none");
+        });
+        
     </script>
 	</body>
 </html>
