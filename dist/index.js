@@ -33,9 +33,8 @@ document.getElementsByTagName('head')[0].appendChild(script);
             $('#container').hide();
             $('#startButton').click(function() {;
                letsGo();
-               console.log('wow');
-              $('#splash').hide();
-              $('#container').show();
+             $('#splash').hide();
+            $('#container').show();
                                                     
                                             
                      });
@@ -81,7 +80,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
 
 				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 40 );
                 camera.maxPolarAngle = 0;
-                camera.panSpeed = 0.1;
+                camera.panSpeed = 10;
                 camera.lookAt( new THREE.Vector3(10,2,4));
                 camera.position.set( 12, 4, 5 );
                 
@@ -129,6 +128,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
                 
                     loader.load( './models/8.pcd', function ( parking ) {
                     parking.material.vertexColors = THREE.NoColors;
+                        parking.material.color.setHex( 0xecebe6 );
 					parking.material.size = pointSize;
                     const pos = islands['parking'];
                     parking.position.set(pos[0],pos[1],pos[2]);
@@ -141,33 +141,36 @@ document.getElementsByTagName('head')[0].appendChild(script);
                 
 				loader.load( './models/6.pcd', function ( tombs ) {
                     tombs.material.vertexColors = THREE.NoColors;
+                    tombs.material.color.setHex( 0xecebe6 );
                     const pos = islands['tombs'];
                     tombs.position.set(pos[0],pos[1],pos[2]);
                     tombs.material.size = pointSize;
-                    tombs.material = m;
+//                    tombs.material = m;
 					tombs.geometry.center();
                     tombs.name = 'tombs';
-                    console.log(tombs);
-					modelGroup.add( tombs );
+                    modelGroup.add( tombs );
                     scene.add( modelGroup );
 					render();
 
 				} );
-                    loader.load( './models/7.pcd', function ( plant ) {
-                    plant.material.vertexColors = THREE.NoColors;
-                    plant.material.size = pointSize;
-                    const modelGroup = new THREE.Group();
-                    const pos = islands['plant'];
-                    plant.position.set(pos[0],pos[1],pos[2]);
-                    plant.name = 'plant';
-                    plant.yo = 'אהלן';
-                    scene.add( plant );
-					render(); 
-
-				} );
+//                    loader.load( './models/7.pcd', function ( plant ) {
+//                    plant.material.vertexColors = THREE.NoColors;
+//                        plant.material.color.setHex( 0xecebe6 );
+//                    plant.material.size = pointSize;
+//                    const modelGroup = new THREE.Group();
+//                    const pos = islands['plant'];
+//                    const pos = islands['plant'];
+//                    plant.position.set(pos[0],pos[1],pos[2]);
+//                    plant.name = 'plant';
+//                    plant.yo = 'אהלן';
+//                    scene.add( plant );
+//					render(); 
+//
+//				} );
                 
                     loader.load( './models/stairs.pcd', function ( stairs ) {
                     stairs.material.vertexColors = THREE.NoColors;
+                        stairs.material.color.setHex( 0xecebe6 );
                     stairs.material.size = pointSize;
                     const modelGroup = new THREE.Group();
                     const pos = islands['stairs'];
@@ -182,6 +185,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
                 
                     loader.load( './models/9.pcd', function ( truck ) {
                     truck.material.vertexColors = THREE.NoColors;
+                        truck.material.color.setHex( 0xecebe6 );
 					truck.material.size = pointSize;
 //                	points.geometry.rotateX( Math.PI );
                     const pos = islands['truck'];
@@ -194,6 +198,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
                 
                     loader.load( './models/yotam.pcd', function ( yotam ) {
                     yotam.material.vertexColors = THREE.NoColors;
+                        yotam.material.color.setHex( 0xecebe6 );
 					yotam.material.size = pointSize;
                     const pos = islands['yotam'];
                     yotam.position.set(pos[0],pos[1],pos[2]);
@@ -206,6 +211,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
                 
                     loader.load( './models/yuval.pcd', function ( yuval ) {
                     yuval.material.vertexColors = THREE.NoColors;
+                        yuval.material.color.setHex( 0xecebe6 );
 					yuval.material.size = pointSize;
                     const pos = islands['yuval'];
                     yuval.position.set(pos[0],pos[1],pos[2]);
@@ -216,6 +222,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
 				} );
                     loader.load( './models/ben.pcd', function ( ben ) {
                     ben.material.vertexColors = THREE.NoColors;
+                        ben.material.color.setHex( 0xecebe6 );
 					ben.material.size = pointSize;
                     const pos = islands['ben'];
                     ben.position.set(pos[0],pos[1]-4,pos[2]);
@@ -247,31 +254,56 @@ document.getElementsByTagName('head')[0].appendChild(script);
 
 
                 function initSound(){
-                                  const audioLoader = new THREE.AudioLoader();
+                const audioLoader = new THREE.AudioLoader();
                 const listener = new THREE.AudioListener();
 		        camera.add( listener );
                
                 
-                const soundList = ['mp3/story.mp3','mp3/truck.mp3'];         
-                const positionList = [35,3,15,
-                                      10,12,1];
-                
-                
-                for (let i = 0; i < soundList.length; i++) {
+                    
+                const newSounds = [ 
+
+                    {file:'mp3/parking/story.mp3', x:0, y:0, z:47, radius:5},
+                    {file:'mp3/parking/fx.mp3', x:10, y:0, z:36, radius:5},
+                    {file:'mp3/parking/music.mp3', x:3, y:0, z:29, radius:5},
+                    {file:'mp3/ben/story.mp3', x:45, y:6, z:48, radius:5},
+                    {file:'mp3/ben/story.mp3', x:18, y:5, z:47, radius:3},
+                     {file:'mp3/ben/fx.mp3', x:61, y:6, z:56, radius:5},
+                    {file:'mp3/stairs/story.mp3', x:25, y:18, z:20, radius:5},
+                    {file:'mp3/tombs/story.mp3', x:19, y:1, z:5, radius:5, volume:2},
+                    {file:'mp3/tombs/fx.mp3', x:10, y:4, z:3, radius:2},
+                    {file:'mp3/tombs/fx2.mp3', x:12, y:2, z:10, radius:3},
+                    {file:'mp3/truck/music.mp3', x:42, y:3, z:30, radius:5, volume:3},
+                    {file:'mp3/truck/story.mp3', x:52, y:4, z:20, radius:6},
+                    {file:'mp3/truck/truck.mp3', x:50, y:2, z:26, radius:5, volume:3},
+
+                    ];
+                    
+
+                newSounds.forEach(function(sound) {
                 const positionalAudio = new THREE.PositionalAudio( listener );
-                audioLoader.load( soundList[i], function ( buffer ) {
+                audioLoader.load( sound.file, function ( buffer ) {
                 positionalAudio.setBuffer( buffer );
-                positionalAudio.setRefDistance( 1 );
+                positionalAudio.setRefDistance( 0.5 );
                 positionalAudio.loop = true;
-                positionalAudio.setRolloffFactor(8);
+                positionalAudio.setRolloffFactor(sound.radius);
+                positionalAudio.setVolume(( sound.volume || 5 ));
+                positionalAudio.setMaxDistance( 10 );
                 positionalAudio.play();
                 });
                 const audioObject = new THREE.Object3D;
-                audioObject.position.set(positionList[i*3], positionList[i*3+1],positionList[i*3+2]);
-                console.log(positionList[i*3], positionList[i*3+1],positionList[i*3+2])
+                audioObject.position.set(sound.x, sound.y,sound.z);
                 audioObject.add(positionalAudio);
                 scene.add(audioObject);
-                }
+                })
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+
                 
     
 
@@ -412,12 +444,12 @@ document.getElementsByTagName('head')[0].appendChild(script);
                 
                   
 //                    const oldTargetPosition = controls.target.clone();
-                    console.log(camera.position);
+//                    console.log(camera.position);
 //             controls.enabled = false;
-                    var duration = 4000;
+                    var duration = 3500;
                     var position = new THREE.Vector3().copy(camera.position);
                     var lookAt = new THREE.Vector3().copy(controls.target);
-                    var targetPosition = new THREE.Vector3(x+0.5, y+35, z+0.2);
+                    var targetPosition = new THREE.Vector3(x+0.5, y+10, z+0.2);
                     var finalPosition = new THREE.Vector3(x+1, y+1, z+1);
                     var targetLookAt = new THREE.Vector3(x, y, z);
                     var tween = new TWEEN.Tween(position)
@@ -457,8 +489,8 @@ document.getElementsByTagName('head')[0].appendChild(script);
               
                
                     var tweenB = new TWEEN.Tween(position)
-                        .to(finalPosition, 5000)
-                        .easing( TWEEN.Easing.Cubic.InOut )
+                        .to(finalPosition, 3500)
+                        .easing( TWEEN.Easing.Cubic.Out )
                         .onUpdate(function () {
                             camera.position.copy(position);
 
@@ -492,21 +524,159 @@ document.getElementsByTagName('head')[0].appendChild(script);
                     let tarY = controls.target.y.toFixed(1);
                     var tarZ = controls.target.z.toFixed(1);
                     
-                     document.getElementById("data").innerHTML = 'Position:   '+posX+' , '+posY+' , '+posZ+'<br>'+'Target:   '+ tarX+' , '+tarY+' , '+tarZ;
-                    
-                        if ( tarX >= 4 &&  tarX <= 22 && tarZ >= -1 &&  tarZ <= 11 ){
-                             $('h1').fadeIn('slow');
-                             $('h1').text('עבר האגרון הצפוני');
-                            
-                        }else if ( tarX >= 30 &&  tarX <= 45 && tarZ >= 12 &&  tarZ <= 20 ){
-                            $('h1').fadeIn('slow');
-                             $('h1').text('משאית הזבל');
-                            
-                        }else{
-                            $('h1').fadeOut('slow');
-                        }
-                
+                    document.getElementById("data").innerHTML = 'Position:   '+posX+' , '+posY+' , '+posZ+'<br>'+'Target:   '+ tarX+' , '+tarY+' , '+tarZ;
+                    boundries(tarX,tarY,tarZ);
+               
                 }
+
+
+
+                     const islandsBoundries =[
+                    {name: 'עבר האגרון הצפוני', minX: 4, maxX: 22, minY: 0, maxY:6, minZ: -1, maxZ: 11},
+                    {name: 'מעלות ג׳ורג׳ מספר 33', minX:22, maxX: 30, minY: 0, maxY:50, minZ: 19, maxZ: 22}
+                    ];
+
+                    const pointCaptions = [
+                           { text: 'בחורשה היה מעט דשא ומעט דשא סינטטי', x: 11, z: 5, y: 3 },
+                              { text: 'בחורשה היו קברים מוסלמים עתיקים ובינהם היו ערמות של ספסלי רחוב',
+                                x: 15,
+                                z: 7,
+                                y: 2 },
+                              { text: 'ליד אתר הבנייה של מוזיאון הסובלנות חנתה משאית זבל מונעת שתפסה 4 חניות',
+                                x: 50,
+                                z: 27,
+                                y: 8 },
+                              { text: 'הגיעה לעברינו אישה דתייה שדיברה בטלפון עם חנה שהלכה לאיבוד',
+                                x: 43,
+                                z: 26,
+                                y: 2 },
+                              { text: ' בגן התקינו צ׳קלקה של משטרה, כמו שיש בכבישים, רק לאנשים שעושים מנגל',
+                                x: 40,
+                                z: 26,
+                                y: 2 },
+                              { text: 'עברנו ליד בניין גבוהה שבו גרים חברים של יובל',
+                                x: 24,
+                                z: 19,
+                                y: 16 },
+                              { text: 'בקומה הראשונה הייתה דלת אפורה וכבדה עם קודן',
+                                x: 25,
+                                z: 19,
+                                y: 2 },
+                              { text: 'על המדרגות הייתה מיטת חתול, וקערת בונזו אחת על כל מדרגה',
+                                x: 23,
+                                z: 19,
+                                y: 8 },
+                              { text: 'הייתה עוד דלת שסתם נשענה על הקיר וחסמה את החלון',
+                                x: 21,
+                                z: 18,
+                                y: 17 },
+                              { text: 'מולנו התגלה יער של דודי שמש מסנוורים',
+                                x: 28,
+                                z: 26,
+                                y: 20 },
+                              { text: 'על הרצפה ישב מוכר עיתונים וסביבו עמד קהל נלהב',
+                                x: 64,
+                                z: 47,
+                                y: 6 },
+                              { text: 'בהינו ממש יותר מידי זמן בבחור יהודי אמריקאי שקנה עיתון ממוכר העיתונים',
+                                x: 27,
+                                z: 57,
+                                y: 5 },
+                              { text: 'הזר שהלכנו בעקבותיו התקדם לכיוון בוטקה של מפעל הפיס',
+                                x: 24,
+                                z: 56,
+                                y: 6 },
+                              { text: 'הגענו למגרש חניה שצמוד למלון, קרוב לגן העצמאות',
+                                x: 3,
+                                z: 45,
+                                y: 5 },
+                              { text: 'בקבוק פלסטיק כחול שהיה ממש שטוח ומקובצ׳ץ׳ בגלל כל המכוניות שעברו עליו',
+                                x: 3,
+                                z: 47,
+                                y: 0 },
+                              { text: 'אישה יצא מהמלון כשהיא מגלגלת אישה מבוגרת יותר בכסא גלגלים',
+                                x: 2,
+                                z: 36,
+                                y: 0 },
+                              { text: 'בצד השני בו היה שרשרת פלסטיק שחסמה את המעבר',
+                                x: 9,
+                                z: 46,
+                                y: 1 } ]
+
+
+                    let islandTitle = null;
+                    let caption = null;
+
+                    function boundries(x,y,z){
+                        
+                    for(let i=0; i<islandsBoundries.length; i++){
+                        const island = islandsBoundries[i];
+                        
+                    if(
+                            island.maxX >= x &&  island.minX <= x &&
+                            island.maxY  >= y &&  island.minY <=  y &&
+                            island.maxZ  >=  z &&  island.minZ <= z
+                        ){
+                        islandTitle = island.name;
+                        break;
+                    }else{
+                        
+                    islandTitle = null
+                    }}
+                    for(let i=0; i<pointCaptions.length; i++){
+                        const point = pointCaptions[i];
+                        
+                    if(
+                            point.x+1 >= x &&  point.x-1 <= x &&
+                            point.y+1  >= y &&  point.y-1 <=  y &&
+                            point.z+1  >=  z &&  point.z-1 <= z
+                        ){
+                        caption = point.text;
+                        
+                        break;
+                    }else{
+                        
+                    caption = null
+                    }}
+                        
+                    if (islandTitle === null){
+                       $('h1').fadeOut('slow'); 
+                    }else{
+                         $('h1').fadeIn('slow');
+                        $('h1').text(islandTitle);
+                    };
+                        
+               
+                    if (caption === null){
+                       $('#p1').fadeOut('slow'); 
+                    }else{
+                        $('#p1').text(caption);
+                         $('#p1').fadeIn('slow');
+                        
+                    };
+                      
+                        
+                    
+                    
+                    
+                    };
+
+            
+//                    function boundries(x,y,z){
+//                    islandsBoundries.forEach(function(island){
+//                                    
+//                                if( x >= island.minX &&  x <= island.maxX &&
+//                                    y >= island.minY &&  y <= island.maxY  &&
+//                                    z >= island.minZ &&  z <= island.maxZ ){
+//                                    islandTitle = island.name
+//                                    break;
+//                                }else{
+//                                    islandTitle = null;
+//                                }
+//                    )};
+//                        console.log(islandTitle);
+//                    };
+//           
                 
 
 
@@ -581,7 +751,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
                 var Z= parseInt($(this).attr("data-Z"));
                 const island= $(this).attr("island");
                 const pos = islands[island];
-                console.log(X,Y,Z);
+//                console.log(X,Y,Z);
               goToIsland(pos[0],pos[1],pos[2]);
             });
 
@@ -600,16 +770,16 @@ $(".drum").drum({
     orderAsc:true,
 	change: function(event, data) {
         if ($(this).attr("id") === "drum-x") {
-		console.log('X: '+ data.value);
+//		console.log('X: '+ data.value);
          x = data.value;
             
         }
         else if($(this).attr("id") == "drum-z"){
-         console.log('Z: '+ data.value);
+//         console.log('Z: '+ data.value);
          z = data.value;  
             
         } else if($(this).attr("id") == "drum-y"){
-         console.log('Y: '+ data.value);
+//         console.log('Y: '+ data.value);
          y = data.value;   
         };
       

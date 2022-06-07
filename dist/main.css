@@ -26,6 +26,12 @@ font-weight: 300;
 font-weight: 400;
 }
 
+@font-face {
+  font-family: '80kb';
+  src: url(80-kb-Sharp.otf);
+font-weight: 400;
+}
+
 
 body {
 	margin: 0;
@@ -75,8 +81,8 @@ h1{
     top: 0;
     padding: 40px;
     font-weight: 400;
-/*    color: #ff582b;*/
-    
+    color: #ecebe6;
+    margin: 0;
     width:300px;
     text-align: right;
     line-height: 50px;
@@ -100,11 +106,12 @@ button {
 
 
 #position-area{
-    background: url(position2.svg) no-repeat;
+    background: url(position3.svg) no-repeat;
     background-size: 100%;
     border:none;
     width: 250px;
-    height:106px;
+    height:92px;
+    right: 0;
     
         
 }
@@ -142,7 +149,7 @@ textarea:focus, input:focus{
 	position: absolute;
 	bottom: 120px;
     right: 0;
-	padding: 20px;
+	padding: 40px;
 	box-sizing: border-box;
 	text-align: center;
 	-moz-user-select: none;
@@ -170,6 +177,7 @@ a, button, input, select {
     font-size: 15px;
     padding: 40px;
     user-select: none;
+    color: #ecebe6;
 }
 
 #menu{
@@ -192,10 +200,13 @@ a, button, input, select {
     font-size: 20px;
     font-weight: 200;
     text-align: right;
-    line-height: 24px;
-    padding: 10px;
+    line-height: 22px;
+    padding: 40px;
     width: 290px;
-    right: 20px;
+    right: 0;
+    color: #ecebe6;
+    font-family: '80kb';
+    
     
 }
 
@@ -207,32 +218,38 @@ a, button, input, select {
 }
 
 .icon {
-    padding:3px;
-    width: 100px;
-    height: 30px;
+
+    
+    width: 60px;
+    height: 90px;
     position: relative;
     filter: brightness(100);
-     display: inline-block;
-     margin-left: auto;
+    margin: 0 20px;
+     display: inline-flex;
+  
     text-align: center;
 }
 
 .icon img{
-   width:70px; 
+   width:100%; 
     position: absolute;
-    bottom:20px;
-    left:50px;
+    top:0;
+    
+    
    
 }
 
 .icon a{
+    width: 100px;
     padding-top: 8px;
-    font-size: 12px;
+    font-size: 14px;
     position: absolute;
     bottom: 0;
-    line-height: 12px;
-    left: 50px;
+    line-height: 14px;
+    text-align: center;
     display: none;
+    left: -20px;
+    font-family: '80kb';
     
 }
 
@@ -251,8 +268,9 @@ a, button, input, select {
 width: 850px;
 position: absolute;
 bottom:10px;
-left: 0;
+left: 20px;
 border: none;
+
 
 
 }
@@ -260,15 +278,16 @@ border: none;
 
 .drum{
     position: absolute;
-    bottom: 35px;
+    bottom: 56px;
     left:40px;
-    font-size: 30px;
-    font-family: Narkissim;
+    font-size: 18px;
+    font-family: '80kb';
     font-weight: 300;
     -webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	-o-transform-style: preserve-3d;
 	transform-style: preserve-3d;
+    color: #ecebe6;
 }
 
 .drum-item-current{
@@ -276,12 +295,14 @@ border: none;
 }
 .drum-item {
     line-height: 1;
+    font-family: '80kb';
+    
 }
 
 .drum-viewport {
   margin: 0;
   padding: 0 ;
-  height: 50px;
+  height: 32px;
  
   cursor: pointer;
 }
