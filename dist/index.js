@@ -539,8 +539,13 @@ document.getElementsByTagName('head')[0].appendChild(script);
 
 
                      const islandsBoundries =[
-                    {name: 'עבר האגרון הצפוני', minX: 4, maxX: 22, minY: 0, maxY:6, minZ: -1, maxZ: 11},
-                    {name: 'מעלות ג׳ורג׳ מספר 33', minX:22, maxX: 30, minY: 0, maxY:50, minZ: 19, maxZ: 22}
+                    {name: 'עבר האגרון הצפוני', minX: 7, maxX: 27, minY: 0, maxY:6, minZ: -1, maxZ: 10},
+                    {name: 'בקעת הסובלנות התיכונה', minX: 35, maxX: 55, minY: 0, maxY:9, minZ: 19, maxZ: 30},
+                    {name: 'חבל יהודה הדרומי', minX: 7, maxX: 88, minY: 5, maxY:12, minZ: 36, maxZ: 67},
+                     {name: 'חולות מישור לאונרדו', minX: 0, maxX: 16, minY: 0, maxY:8, minZ: 30, maxZ: 54},
+                      {name: 'מעלות ג׳ורג׳ מספר 33', minX:21, maxX: 28, minY: 0, maxY:50, minZ: 18, maxZ: 28},
+                      {name: 'שמואל הנגיד מספר 19', minX: 0, maxX: 3, minY: 4, maxY:10, minZ: 16, maxZ: 21},
+                        {name: 'אוסישקין מספר 42', minX: 32, maxX: 39, minY: 6, maxY:12, minZ: -5, maxZ: 7}
                     ];
 
                     const pointCaptions = [
