@@ -42,6 +42,7 @@ body {
 	line-height: 35px;
 	overscroll-behavior: none;
     overflow: hidden;
+    user-select: none;
 }
 #splash{
     background-color: black;
@@ -73,6 +74,10 @@ p{
     color:#ff582b;
     font-size: 25px;
     font-family: Narkissim;
+}
+
+#container{
+    display: none;
 }
 
 h1{
@@ -147,7 +152,7 @@ textarea:focus, input:focus{
 
 #info {
 	position: absolute;
-	bottom: 120px;
+	bottom: 0;
     right: 0;
 	padding: 40px;
 	box-sizing: border-box;
@@ -203,10 +208,11 @@ a, button, input, select {
     line-height: 22px;
     padding: 40px;
     width: 290px;
-    right: 0;
+    right: 300px;
     color: #ecebe6;
     font-family: '80kb';
-    
+    vertical-align: middle;
+    display: inline-block;
     
 }
 

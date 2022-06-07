@@ -81,8 +81,8 @@ document.getElementsByTagName('head')[0].appendChild(script);
 				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 40 );
                 camera.maxPolarAngle = 0;
                 camera.panSpeed = 10;
-                camera.lookAt( new THREE.Vector3(10,2,4));
-                camera.position.set( 12, 4, 5 );
+                camera.lookAt( new THREE.Vector3(3,0,40));
+                camera.position.set( 4, 0, 40 );
                 
 				scene.add( camera );
                 
@@ -102,7 +102,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
 				controls = new THREE.OrbitControls( camera, renderer.domElement );
                 
 				//controls.addEventListener( 'change', render ); // call this only in static scenes (i.e., if there is no animation loop)
-                controls.target = new THREE.Vector3(12,0,5);
+                controls.target = new THREE.Vector3(3,0,40);
 				controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
 				controls.dampingFactor = 0.08;
 
@@ -112,6 +112,9 @@ document.getElementsByTagName('head')[0].appendChild(script);
 				controls.maxDistance = 8;
                 controls.autoRotate = false;
                 
+                
+          
+
        
 //				controls.maxPolarAngle = Math.PI*2 ;
 
@@ -267,11 +270,15 @@ document.getElementsByTagName('head')[0].appendChild(script);
                     {file:'mp3/parking/music.mp3', x:3, y:0, z:29, radius:5},
                     {file:'mp3/ben/story.mp3', x:45, y:6, z:48, radius:5},
                     {file:'mp3/ben/story.mp3', x:18, y:5, z:47, radius:3},
-                     {file:'mp3/ben/fx.mp3', x:61, y:6, z:56, radius:5},
-                    {file:'mp3/stairs/story.mp3', x:25, y:18, z:20, radius:5},
+                     {file:'mp3/ben/fx.mp3', x:61, y:6, z:56, radius:5,volume:8},
+                    {file:'mp3/stairs/story4.mp3', x:22, y:18, z:19, radius:5},
+                    {file:'mp3/stairs/story3.mp3', x:25, y:12, z:19, radius:5},
+                    {file:'mp3/stairs/story2.mp3', x:24, y:6, z:20, radius:5},
+                    {file:'mp3/stairs/story1.mp3', x:22, y:1, z:20, radius:5},
+                    {file:'mp3/stairs/music.mp3', x:24, y:10, z:20, radius:2},
                     {file:'mp3/tombs/story.mp3', x:19, y:1, z:5, radius:5, volume:2},
-                    {file:'mp3/tombs/fx.mp3', x:10, y:4, z:3, radius:2},
-                    {file:'mp3/tombs/fx2.mp3', x:12, y:2, z:10, radius:3},
+                    {file:'mp3/tombs/fx.mp3', x:10, y:4, z:3, radius:5,volume:2},
+                    {file:'mp3/tombs/fx2.mp3', x:12, y:2, z:10, radius:2,volume:6},
                     {file:'mp3/truck/music.mp3', x:42, y:3, z:30, radius:5, volume:3},
                     {file:'mp3/truck/story.mp3', x:52, y:4, z:20, radius:6},
                     {file:'mp3/truck/truck.mp3', x:50, y:2, z:26, radius:5, volume:3},
@@ -686,6 +693,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
             function cameraMove(){
                  cameraStae();
                 controls.autoRotate = false;
+                
              
                             
                
