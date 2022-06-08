@@ -81,8 +81,8 @@ document.getElementsByTagName('head')[0].appendChild(script);
 				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 40 );
                 camera.maxPolarAngle = 0;
                 camera.panSpeed = 10;
-                camera.lookAt( new THREE.Vector3(3,0,40));
-                camera.position.set( 4, 0, 40 );
+                camera.lookAt( new THREE.Vector3(1,0,40));
+                camera.position.set( 7, 2, 40 );
                 
 				scene.add( camera );
                 
@@ -102,7 +102,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
 				controls = new THREE.OrbitControls( camera, renderer.domElement );
                 
 				//controls.addEventListener( 'change', render ); // call this only in static scenes (i.e., if there is no animation loop)
-                controls.target = new THREE.Vector3(3,0,40);
+                controls.target = new THREE.Vector3(1,0,40);
 				controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
 				controls.dampingFactor = 0.08;
 
@@ -121,11 +121,22 @@ document.getElementsByTagName('head')[0].appendChild(script);
 //				scene.add( new THREE.AxesHelper( 1 ) );
                 
                 
-                
+                var manager = new THREE.LoadingManager();
+                manager.onProgress = function ( item, loaded, total ) {
+//                  progressBar.style.width = (loaded / total * 100) + '%';
+                    $('#loader').text(Math.trunc(loaded / total * 100) + '%');
+                };
+                manager.onLoad = function ( ) {
+                    
+                $('#loader').fadeOut();
+               $('#startButton').fadeIn('slow');
+
+            };
+
 
                 
                 const modelGroup = new THREE.Group();
-                const loader = new PCDLoader();
+                const loader = new PCDLoader(manager);
                 
                 let truck, plant, points;
                 

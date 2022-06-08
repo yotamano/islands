@@ -27,6 +27,12 @@ font-weight: 400;
 }
 
 @font-face {
+  font-family: Narkissim;
+  src: url(Narkisim-Italic.otf);
+font-style: italic;
+}
+
+@font-face {
   font-family: '80kb';
   src: url(80-kb-Sharp.otf);
 font-weight: 400;
@@ -88,8 +94,16 @@ p{
 
 }
 
+#loader{
+    font-style: italic;
+    font-size: 1.5em;
+    color:#ff582b;
+    margin-top: 5vh;
+     
+}
+
 #startButton {
-   
+   display: none;
     z-index: 3;
     top: 50%;
     left: 50%;
@@ -128,7 +142,7 @@ p{
     font-family: '80kb';
     font-size: 0.6em;
     line-height: 1.5em;
-    width: 300px;
+    width: 280px;
     text-align: right;
     bottom:0;
     right: 300px;
