@@ -27,6 +27,12 @@ font-weight: 400;
 }
 
 @font-face {
+  font-family: Narkissim;
+  src: url(Narkisim-Italic.otf);
+font-style: italic;
+}
+
+@font-face {
   font-family: '80kb';
   src: url(80-kb-Sharp.otf);
 font-weight: 400;
@@ -51,29 +57,117 @@ body {
     z-index: 2;
     position: absolute;
     text-align: center;
-    padding: 10%;
+    background-image: url(line-bg.svg);
+    background-position: 70% 15%;
+    background-size: 300% ;
+    direction: rtl;
+    
+    
+ 
+    
 }
 
+
+h2{
+    color: #ecebe6;
+    text-align: center;
+    width: 100%;
+    font-size: 2em;
+    margin-top: 18vh;
+}
+   
+
 p{
+    color: #ecebe6;
     font-size: 25px;
     font-family: editor;
-    width: 300px;
+    width: 100%;
+    text-align: right;
+    font-family: '80kb';
+    font-size: 0.6em;
+      line-height: 1.5em;
+    max-width: 550px;
+      margin-left: auto;
+    margin-right: auto;
+  display: table;
+   
+
+}
+
+#loader{
+    font-style: italic;
+    font-size: 1.5em;
+    color:#ff582b;
+    margin-top: 5vh;
+     
 }
 
 #startButton {
-    position: absolute;
+   display: none;
     z-index: 3;
     top: 50%;
     left: 50%;
-    width: 100px;
-    height: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 6em;
+    height: 2.1em;
+    padding: 0.5em;
+    margin-top: 5vh;
     background: rgba(0, 0, 0, 0.7);
     color:#ff582b;
-    font-size: 25px;
-    font-family: Narkissim;
+    font-size: 0.7em;
+    font-family: '80kb';
+    border: 0.5px solid #ecebe6;;
+}
+
+#startButton:hover{
+    color: #ff582b;
+    background-color: #ecebe6;
+}
+
+
+#position-area2{
+    position: absolute;
+    bottom: 0;
+    background: url(position3.svg) no-repeat;
+    background-size: 100%;
+    border:none;
+    width: 250px;
+    height:92px;
+    margin: 40px
+   
+}
+
+
+#position-area2 span{
+    position: absolute;
+    font-family: '80kb';
+    font-size: 0.6em;
+    line-height: 1.5em;
+    width: 280px;
+    text-align: right;
+    bottom:0;
+    right: 300px;
+    color:#ff582b
+    
+   
+}
+
+
+#credits{
+    position: absolute;
+   font-family: '80kb';
+    font-size: 0.5em; 
+    line-height: 1.6em;
+    width: 400px;
+     text-align: right;
+    bottom:0;
+    left: 0;
+    margin: 40px;
+}
+#credits img{
+    position: absolute;
+    right: -120px;
+      width: 80px;
+    bottom: 25px;
 }
 
 #container{
@@ -88,10 +182,14 @@ h1{
     font-weight: 400;
     color: #ecebe6;
     margin: 0;
-    width:350px;
+    width:337px;
     text-align: right;
     line-height: 50px;
+    font-size: 2em;
 }
+
+ 
+
 
 
 
@@ -117,6 +215,7 @@ button {
     width: 250px;
     height:92px;
     right: 0;
+    border: 1px;
     
         
 }
@@ -226,7 +325,7 @@ a, button, input, select {
 .icon {
 
     
-    width: 60px;
+    width: 2em;
     height: 90px;
     position: relative;
     filter: brightness(100);

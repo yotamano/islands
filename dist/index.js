@@ -33,8 +33,8 @@ document.getElementsByTagName('head')[0].appendChild(script);
             $('#container').hide();
             $('#startButton').click(function() {;
                letsGo();
-             $('#splash').hide();
-            $('#container').show();
+             $('#splash').fadeOut();
+            $('#container').fadeIn();
                                                     
                                             
                      });
@@ -81,8 +81,8 @@ document.getElementsByTagName('head')[0].appendChild(script);
 				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 40 );
                 camera.maxPolarAngle = 0;
                 camera.panSpeed = 10;
-                camera.lookAt( new THREE.Vector3(3,0,40));
-                camera.position.set( 4, 0, 40 );
+                camera.lookAt( new THREE.Vector3(1,0,40));
+                camera.position.set( 7, 2, 40 );
                 
 				scene.add( camera );
                 
@@ -102,7 +102,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
 				controls = new THREE.OrbitControls( camera, renderer.domElement );
                 
 				//controls.addEventListener( 'change', render ); // call this only in static scenes (i.e., if there is no animation loop)
-                controls.target = new THREE.Vector3(3,0,40);
+                controls.target = new THREE.Vector3(1,0,40);
 				controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
 				controls.dampingFactor = 0.08;
 
@@ -111,6 +111,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
 				controls.minDistance = 1;
 				controls.maxDistance = 8;
                 controls.autoRotate = false;
+                controls.autoRotateSpeed = 0.5;
                 
                 
           
@@ -121,11 +122,23 @@ document.getElementsByTagName('head')[0].appendChild(script);
 //				scene.add( new THREE.AxesHelper( 1 ) );
                 
                 
-                
+                var manager = new THREE.LoadingManager();
+                manager.onProgress = function ( item, loaded, total ) {
+//                  progressBar.style.width = (loaded / total * 100) + '%';
+                    $('#loader').text(Math.trunc(loaded / total * 100) + '%');
+                };
+                manager.onLoad = function ( ) {
+                    
+                $('#loader').fadeOut('slow').promise().done(function(){
+               $('#startButton').fadeIn('slow');
+            });
+
+            };
+
 
                 
                 const modelGroup = new THREE.Group();
-                const loader = new PCDLoader();
+                const loader = new PCDLoader(manager);
                 
                 let truck, plant, points;
                 
@@ -270,18 +283,28 @@ document.getElementsByTagName('head')[0].appendChild(script);
                     {file:'mp3/parking/music.mp3', x:3, y:0, z:29, radius:5},
                     {file:'mp3/ben/story.mp3', x:45, y:6, z:48, radius:5},
                     {file:'mp3/ben/story.mp3', x:18, y:5, z:47, radius:3},
-                     {file:'mp3/ben/fx.mp3', x:61, y:6, z:56, radius:5,volume:8},
+                     {file:'mp3/ben/fx.mp3', x:24, y:6, z:52, radius:5,volume:8},
+                    {file:'mp3/ben/piano.mp3', x:60.7, y:6, z:52, radius:3,volume:8},
                     {file:'mp3/stairs/story4.mp3', x:22, y:18, z:19, radius:5},
                     {file:'mp3/stairs/story3.mp3', x:25, y:12, z:19, radius:5},
                     {file:'mp3/stairs/story2.mp3', x:24, y:6, z:20, radius:5},
                     {file:'mp3/stairs/story1.mp3', x:22, y:1, z:20, radius:5},
                     {file:'mp3/stairs/music.mp3', x:24, y:10, z:20, radius:2},
+                    {file:'mp3/stairs/cat.mp3', x:22, y:3, z:19, radius:6},
+                    {file:'mp3/stairs/washing.mp3', x:25, y:7, z:17.4, radius:5},
+                    {file:'mp3/stairs/neighbors.mp3', x:23, y:12, z:19, radius:5},
+                    {file:'mp3/stairs/roof.mp3', x:26, y:19, z:29, radius:3,volume:6},
                     {file:'mp3/tombs/story.mp3', x:19, y:1, z:5, radius:5, volume:2},
                     {file:'mp3/tombs/fx.mp3', x:10, y:4, z:3, radius:5,volume:2},
                     {file:'mp3/tombs/fx2.mp3', x:12, y:2, z:10, radius:2,volume:6},
                     {file:'mp3/truck/music.mp3', x:42, y:3, z:30, radius:5, volume:3},
-                    {file:'mp3/truck/story.mp3', x:52, y:4, z:20, radius:6},
-                    {file:'mp3/truck/truck.mp3', x:50, y:2, z:26, radius:5, volume:3},
+                    {file:'mp3/truck/story.mp3', x:52, y:4, z:20, radius:4, volume:7},
+                    {file:'mp3/truck/truck.mp3', x:50, y:2, z:26, radius:5, volume:2},
+                     {file:'mp3/yuval/music1.mp3', x:33.8, y:8, z:-2.2, radius:5, volume:3},
+                    {file:'mp3/yuval/music2.mp3', x:36.4, y:9, z:3, radius:5, volume:3},
+                    {file:'mp3/yuval/fx.mp3', x:39.2, y:4, z:2.3, radius:5, volume:2},
+                    {file:'mp3/yotam/music.mp3', x:2.3, y:5, z:20.8, radius:5, volume:5},
+                    {file:'mp3/yotam/fx.mp3', x:-1.5, y:5, z:18.6, radius:5, volume:5},
 
                     ];
                     
@@ -545,7 +568,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
                      {name: 'חולות מישור לאונרדו', minX: 0, maxX: 16, minY: 0, maxY:8, minZ: 30, maxZ: 54},
                       {name: 'מעלות ג׳ורג׳ מספר 33', minX:21, maxX: 28, minY: 0, maxY:50, minZ: 18, maxZ: 28},
                       {name: 'שמואל הנגיד מספר 19', minX: 0, maxX: 3, minY: 4, maxY:10, minZ: 16, maxZ: 21},
-                        {name: 'אוסישקין מספר 42', minX: 32, maxX: 39, minY: 6, maxY:12, minZ: -5, maxZ: 7}
+                        {name: 'אוסישקין<br> מספר 42', minX: 32, maxX: 39, minY: 6, maxY:12, minZ: -5, maxZ: 7}
                     ];
 
                     const pointCaptions = [
@@ -655,7 +678,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
                        $('h1').fadeOut('slow'); 
                     }else{
                          $('h1').fadeIn('slow');
-                        $('h1').text(islandTitle);
+                        $('h1').html(islandTitle);
                     };
                         
                
@@ -693,17 +716,16 @@ document.getElementsByTagName('head')[0].appendChild(script);
 
 
           
+      
         
 
             function cameraMove(){
                  cameraStae();
-                controls.autoRotate = false;
                 
-             
-                            
-               
-            
+//                idleTime = 0;
+                
             }
+
 
          
 
@@ -802,8 +824,28 @@ $(".drum").drum({
 });
 
 
+  let idleTime = 0;
+$(document).ready(function(){
+var idleInterval = setInterval(timerIncrement, 3000);
+      $(this).mousemove(function (e) {
+            controls.autoRotate = false;
+            idleTime = 0;
+        });
+    
+        function timerIncrement() {
+       
+        idleTime = idleTime + 1;
+             console.log(idleTime);
+        if (idleTime > 4) { // 20 minutes
+            controls.autoRotate = true;
+        }else{
+            controls.autoRotate = false;
+        }
+    } 
 
 
+
+});
 
 
 
