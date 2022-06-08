@@ -43,6 +43,7 @@
                 (s = h[a][t]),
                 (n = h[a][t] = function (t, e) {
                     return this._createWidget ? void (arguments.length && this._createWidget(t, e)) : new n(t, e);
+                    return this._createWidget ? void (arguments.length && this._createWidget(t, e)) : new n(t, e);
                 }),
                 h.extend(n, s, { version: e.version, _proto: h.extend({}, e), _childConstructors: [] }),
                 ((o = new i()).options = h.widget.extend({}, o.options)),
@@ -437,7 +438,8 @@
             var i = this,
                 s = "";
             t.forEach(function (t) {
-                var e = '<div class="drum-item" data-value="' + t.value + '">' + t.label + "</div>";
+                const superT = ('0'+t.label).slice(-2);
+                var e = '<div class="drum-item" data-value="' + t.value + '">' + superT + "</div>";
                 i.options.orderAsc ? (s += e) : (s = e + s);
             }),
                 this._drumEl.html(s);
