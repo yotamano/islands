@@ -34,11 +34,30 @@
         </head>
     	<body>
         <div id="splash">
-            <h2>כותרת כותרת</h2>
-            <p>טקסט טקסט טקסט טקסט טקסט טקסט טקסט טקסטטקסט טקסט טקסט טקסטטקסט טקסט טקסט טקסטטקסט טקסט טקסט טקסטטקסט טקסט טקסט טקסט</p>
-            <button id="startButton">התחל</button></div>
+            <h2>ללא כיוון</h2>
+            <p>בספר ״ללא כיוון״ מסומנים מקומות רבים באמצעות מראה
+            מקום. ניתן להגיע לכל נקודה באמצעות הזנת המספרים
+            במקום היעודי במסך. הספרה הראשונה מציינת את קו
+            הרוחב (צפון-דרום) השנייה את קו האורך (מזרח-מערב)
+            והשלישית מתארת את הגובה.</p>
+            <button id="startButton">לשם? ></button>
+            <div id="position-area2">
+                <span>הזיזו את הגלגלות מעלה ומטה
+כדי להגיע לנקודה הרצויה </span></div>
+           
+            <div id="credits"> 
+                <img src="bezalel.svg" >
+            נעשה בקורס: ״עיצוב גרפי מתקדם״
+<br>מנחה: יעל בורשטיין
+<br>עיצוב, עריכה, וכתיבה: יותם מנו, יובל הדר
+<br>עיצוב סאונד: יובל זיברגר
+<br>המחלקה לתקשורת חזותית, בצלאל אקדמיה לאמנות ועיצוב
+            </div>
+             </div>
+            
+            
         <div id="container">
-        <h1>עבר האגרון הצפוני</h1>
+        <h1></h1>
         <div id="panel"></div>
 <!--            <div class="dashed"></div>-->
             
@@ -78,7 +97,7 @@
                     
                 
 		</div>
-           <div id="p1">בחורשה היו קברים מוסלמים עתיקים ובינהם היו ערמות של ספסלי רחוב</div>
+           <div id="p1"></div>
             
             </div>
             
@@ -89,10 +108,6 @@
     
     <script>
         
-         
-
-        
-       
 
 $(".inputs").keyup(function () {
     if (this.value.length == this.maxLength) {
@@ -111,6 +126,17 @@ $(".inputs").keyup(function () {
         }, function() {
             $(this).children('a').css("display","none");
         });
+        
+        $(document).ready(function(){
+            $("[data-value=0]").text('00');
+            dragDrum();
+        })
+        
+        function dragDrum(){
+            console.log('wow')
+            $('.drum-drum').css('-webkit-transform":"translate(0px,100px)');
+        }
+        
         
     </script>
 	</body>

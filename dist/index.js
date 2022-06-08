@@ -33,8 +33,8 @@ document.getElementsByTagName('head')[0].appendChild(script);
             $('#container').hide();
             $('#startButton').click(function() {;
                letsGo();
-             $('#splash').hide();
-            $('#container').show();
+             $('#splash').fadeOut();
+            $('#container').fadeIn();
                                                     
                                             
                      });
@@ -270,18 +270,28 @@ document.getElementsByTagName('head')[0].appendChild(script);
                     {file:'mp3/parking/music.mp3', x:3, y:0, z:29, radius:5},
                     {file:'mp3/ben/story.mp3', x:45, y:6, z:48, radius:5},
                     {file:'mp3/ben/story.mp3', x:18, y:5, z:47, radius:3},
-                     {file:'mp3/ben/fx.mp3', x:61, y:6, z:56, radius:5,volume:8},
+                     {file:'mp3/ben/fx.mp3', x:24, y:6, z:52, radius:5,volume:8},
+                    {file:'mp3/ben/piano.mp3', x:60.7, y:6, z:52, radius:3,volume:8},
                     {file:'mp3/stairs/story4.mp3', x:22, y:18, z:19, radius:5},
                     {file:'mp3/stairs/story3.mp3', x:25, y:12, z:19, radius:5},
                     {file:'mp3/stairs/story2.mp3', x:24, y:6, z:20, radius:5},
                     {file:'mp3/stairs/story1.mp3', x:22, y:1, z:20, radius:5},
                     {file:'mp3/stairs/music.mp3', x:24, y:10, z:20, radius:2},
+                    {file:'mp3/stairs/cat.mp3', x:22, y:3, z:19, radius:6},
+                    {file:'mp3/stairs/washing.mp3', x:25, y:7, z:17.4, radius:5},
+                    {file:'mp3/stairs/neighbors.mp3', x:23, y:12, z:19, radius:5},
+                    {file:'mp3/stairs/roof.mp3', x:26, y:19, z:29, radius:3,volume:6},
                     {file:'mp3/tombs/story.mp3', x:19, y:1, z:5, radius:5, volume:2},
                     {file:'mp3/tombs/fx.mp3', x:10, y:4, z:3, radius:5,volume:2},
                     {file:'mp3/tombs/fx2.mp3', x:12, y:2, z:10, radius:2,volume:6},
                     {file:'mp3/truck/music.mp3', x:42, y:3, z:30, radius:5, volume:3},
-                    {file:'mp3/truck/story.mp3', x:52, y:4, z:20, radius:6},
-                    {file:'mp3/truck/truck.mp3', x:50, y:2, z:26, radius:5, volume:3},
+                    {file:'mp3/truck/story.mp3', x:52, y:4, z:20, radius:6, volume:6},
+                    {file:'mp3/truck/truck.mp3', x:50, y:2, z:26, radius:5, volume:2},
+                     {file:'mp3/yuval/music1.mp3', x:33.8, y:8, z:-2.2, radius:5, volume:3},
+                    {file:'mp3/yuval/music2.mp3', x:36.4, y:9, z:3, radius:5, volume:3},
+                    {file:'mp3/yuval/fx.mp3', x:39.2, y:4, z:2.3, radius:5, volume:2},
+                    {file:'mp3/yotam/music.mp3', x:2.3, y:5, z:20.8, radius:5, volume:5},
+                    {file:'mp3/yotam/fx.mp3', x:-1.5, y:5, z:18.6, radius:5, volume:5},
 
                     ];
                     
