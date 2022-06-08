@@ -111,6 +111,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
 				controls.minDistance = 1;
 				controls.maxDistance = 8;
                 controls.autoRotate = false;
+                controls.autoRotateSpeed = 0.5;
                 
                 
           
@@ -128,8 +129,9 @@ document.getElementsByTagName('head')[0].appendChild(script);
                 };
                 manager.onLoad = function ( ) {
                     
-                $('#loader').fadeOut();
+                $('#loader').fadeOut('slow').promise().done(function(){
                $('#startButton').fadeIn('slow');
+            });
 
             };
 
@@ -296,7 +298,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
                     {file:'mp3/tombs/fx.mp3', x:10, y:4, z:3, radius:5,volume:2},
                     {file:'mp3/tombs/fx2.mp3', x:12, y:2, z:10, radius:2,volume:6},
                     {file:'mp3/truck/music.mp3', x:42, y:3, z:30, radius:5, volume:3},
-                    {file:'mp3/truck/story.mp3', x:52, y:4, z:20, radius:6, volume:6},
+                    {file:'mp3/truck/story.mp3', x:52, y:4, z:20, radius:4, volume:7},
                     {file:'mp3/truck/truck.mp3', x:50, y:2, z:26, radius:5, volume:2},
                      {file:'mp3/yuval/music1.mp3', x:33.8, y:8, z:-2.2, radius:5, volume:3},
                     {file:'mp3/yuval/music2.mp3', x:36.4, y:9, z:3, radius:5, volume:3},
@@ -566,7 +568,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
                      {name: 'חולות מישור לאונרדו', minX: 0, maxX: 16, minY: 0, maxY:8, minZ: 30, maxZ: 54},
                       {name: 'מעלות ג׳ורג׳ מספר 33', minX:21, maxX: 28, minY: 0, maxY:50, minZ: 18, maxZ: 28},
                       {name: 'שמואל הנגיד מספר 19', minX: 0, maxX: 3, minY: 4, maxY:10, minZ: 16, maxZ: 21},
-                        {name: 'אוסישקין מספר 42', minX: 32, maxX: 39, minY: 6, maxY:12, minZ: -5, maxZ: 7}
+                        {name: 'אוסישקין<br> מספר 42', minX: 32, maxX: 39, minY: 6, maxY:12, minZ: -5, maxZ: 7}
                     ];
 
                     const pointCaptions = [
@@ -676,7 +678,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
                        $('h1').fadeOut('slow'); 
                     }else{
                          $('h1').fadeIn('slow');
-                        $('h1').text(islandTitle);
+                        $('h1').html(islandTitle);
                     };
                         
                
@@ -714,17 +716,16 @@ document.getElementsByTagName('head')[0].appendChild(script);
 
 
           
+      
         
 
             function cameraMove(){
                  cameraStae();
-                controls.autoRotate = false;
                 
-             
-                            
-               
-            
+//                idleTime = 0;
+                
             }
+
 
          
 
@@ -823,8 +824,28 @@ $(".drum").drum({
 });
 
 
+  let idleTime = 0;
+$(document).ready(function(){
+var idleInterval = setInterval(timerIncrement, 3000);
+      $(this).mousemove(function (e) {
+            controls.autoRotate = false;
+            idleTime = 0;
+        });
+    
+        function timerIncrement() {
+       
+        idleTime = idleTime + 1;
+             console.log(idleTime);
+        if (idleTime > 4) { // 20 minutes
+            controls.autoRotate = true;
+        }else{
+            controls.autoRotate = false;
+        }
+    } 
 
 
+
+});
 
 
 
