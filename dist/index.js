@@ -835,7 +835,7 @@ var idleInterval = setInterval(timerIncrement, 3000);
         function timerIncrement() {
        
         idleTime = idleTime + 1;
-             console.log(idleTime);
+//             console.log(idleTime);
         if (idleTime > 4) { // 20 minutes
             controls.autoRotate = true;
         }else{
