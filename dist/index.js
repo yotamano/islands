@@ -5,7 +5,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
 //import * as THREE from '/js/three.module.js';
 
 
-	import { OrbitControls } from '/jsm/controls/OrbitControls.js';
+	import { OrbitControls } from './jsm/controls/OrbitControls.js';
 			import { PCDLoader } from './jsm/loaders/PCDLoader.js';
 //            import { MapControls } from '/jsm/controls/OrbitControls.js';
             import { TWEEN } from './js/tween.module.min.js';
