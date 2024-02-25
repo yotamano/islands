@@ -2,7 +2,7 @@ var script = document.createElement('script');
 script.src = 'https://code.jquery.com/jquery-3.6.0.min.js';
 document.getElementsByTagName('head')[0].appendChild(script);
 
-//import * as THREE from '/js/three.module.js';
+import * as THREE from '/js/three.module.js';
 
 
 	import { OrbitControls } from './jsm/controls/OrbitControls.js';
